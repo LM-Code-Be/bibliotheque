@@ -1,0 +1,50 @@
+{% extends 'layout.html' %}
+{% block title %}📚 Mes Livres{% endblock %}
+
+{% block content %}
+<h2 class="mb-3">Liste des livres</h2>
+
+<!-- Filtrage simple -->
+<form class="row g-2 mb-3" method="get" action="{{ url_for('book_bp.index') }}">
+    <div class="col-md-3">
+        <select name="status" class="form-select" aria-label="Filtrer par statut">
+            <option value="">— Statut —</option>
+            {% for state in ['à lire','en cours','lu'] %}
+                <option value="{{ state }}" {% if request.args.get('status')==state %}selected{% endif %}>{{ state }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="col-md-3">
+        <input type="text" name="author" class="form-control" placeholder="Auteur"
+               value="{{ request.args.get('author','') }}">
+    </div>
+    <div class="col-md-2 d-grid">
+        <button class="btn btn-accent" type="submit">Filtrer</button>
+    </div>
+</form>
+
+<table class="table table-hover table-bordered align-middle">
+    <thead class="table-dark">
+    <tr>
+        <th>Titre</th><th>Auteur</th><th>Statut</th><th>Note</th><th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for b in books %}
+        <tr>
+            <td>{{ b.title }}</td>
+            <td>{{ b.author }}</td>
+            <td>{{ b.status }}</td>
+            <td>{{ b.note if b.note is not none else '-' }}</td>
+            <td>
+                <a class="btn btn-sm btn-secondary" href="{{ url_for('book_bp.edit_book', book_id=b.id) }}">✏️</a>
+                <a class="btn btn-sm btn-danger" href="{{ url_for('book_bp.delete_book', book_id=b.id) }}"
+                   onclick="return confirm('Supprimer ce livre ?');">🗑️</a>
+            </td>
+        </tr>
+    {% else %}
+        <tr><td colspan="5" class="text-center">Aucun livre trouvé…</td></tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

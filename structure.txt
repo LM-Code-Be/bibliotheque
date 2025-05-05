@@ -1,0 +1,24 @@
+bibliotheque/
+├── app.py
+├── config.py
+├── requirements.txt
+├── run.py
+├── static/
+│   ├── css/
+│   │   └── style.css
+│   ├── js/
+│   │   └── chart.js
+├── templates/
+│   ├── layout.html
+│   ├── index.html
+│   ├── add_book.html
+│   ├── edit_book.html
+│   ├── stats.html
+├── models/
+│   └── book_model.py
+├── controllers/
+│   └── book_controller.py
+├── db/
+│   └── init_db.sql
+└── utils/
+    └── helpers.py

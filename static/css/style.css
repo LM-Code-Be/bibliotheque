@@ -1,0 +1,66 @@
+/* ========= Styles personnalisés ========= */
+/* Quelques over‑rides Bootstrap + petites animations */
+
+/* — Couleurs perso — */
+:root{
+    --bg-dark: #111827;
+    --accent:   #6366f1;   /* indigo‑500 */
+}
+
+/* Corps de page */
+body{
+    background: var(--bg-dark);
+    color:#f1f5f9;         /* slate‑100 */
+    min-height:100vh;
+}
+
+/* Navbar */
+.navbar-brand{
+    font-weight:700;
+    letter-spacing:.5px;
+}
+
+.nav-link.active{
+    color:var(--accent)!important;
+}
+
+.table-hover tbody tr:hover{
+    background:#1e293b;    /* slate‑800 */
+}
+
+/* Boutons */
+.btn-accent{
+    background:var(--accent);
+    border:none;
+}
+.btn-accent:hover{
+    background:#4f46e5;    /* indigo‑600 */
+}
+
+/* Cartes (stats) */
+.card-dark{
+    background:#1f2937; /* slate‑800 */
+    border:1px solid #334155; /* slate‑700 */
+    border-radius:1rem;
+    box-shadow:0 5px 20px rgba(0,0,0,.3);
+    transition:transform .2s;
+}
+.card-dark:hover{ transform: translateY(-4px); }
+
+/* Formulaires */
+.form-control, .form-select{
+    background:#0f172a;       /* slate‑900 */
+    color:#f8fafc;
+    border:1px solid #334155;
+}
+.form-control:focus, .form-select:focus{
+    border-color:var(--accent);
+    box-shadow:0 0 0 .2rem rgb(99 102 241 / .25);
+}
+
+/* p’tite anim sur icône “Ajouter” */
+@keyframes wiggle{
+    0%,100%{ transform:rotate(0deg); }
+    50%   { transform:rotate(6deg); }
+}
+.wiggle:hover{ animation:wiggle .2s ease-in-out; }

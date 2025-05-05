@@ -1,4 +1,4 @@
 Flask==3.0.3
-flask-mysqldb==2.0.0
+flask-mysqldb==2.0.0  # facultatif si tu gardes mysqlclient
 python-dotenv==1.0.1
-mysqlclient==2.2.4
+PyMySQL==1.1.0

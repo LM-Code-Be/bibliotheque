@@ -1,0 +1,47 @@
+{% extends 'layout.html' %}
+{% block title %}📊 Tableau de bord{% endblock %}
+
+{% block extra_head %}
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Tableau de bord de lecture</h2>
+
+<!-- ===== Résumés chiffrés ===== -->
+<div class="row g-3 mb-4 text-center">
+    {% for card in summary_cards %}
+    <div class="col-6 col-md-2">
+        <div class="card card-dark p-3 h-100">
+            <h5 class="mb-1">{{ card.value }}</h5>
+            <small class="text-secondary">{{ card.label }}</small>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- ===== Graphiques ===== -->
+<div class="row g-4">
+    <div class="col-12 col-lg-6">
+        <div class="card card-dark p-3">
+            <h6 class="mb-2">Répartition par statut</h6>
+            <canvas id="chartStatus"></canvas>
+        </div>
+    </div>
+    <div class="col-12 col-lg-6">
+        <div class="card card-dark p-3">
+            <h6 class="mb-2">Livres terminés par mois (12 derniers)</h6>
+            <canvas id="chartMonthly"></canvas>
+        </div>
+    </div>
+</div>
+
+<!-- JSON sérialisé -->
+<script id="jsonStatus"  type="application/json">{{ stats_status|tojson }}</script>
+<script id="jsonMonthly" type="application/json">{{ stats_monthly|tojson }}</script>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/chart.js') }}"></script>
+{% endblock %}
